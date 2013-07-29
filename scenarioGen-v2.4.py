@@ -66,30 +66,38 @@ class ScenarioGen(object):
 		self.location = location
 	
 	def choosePerson1(self):
+		"""Pick random person from list"""
 		self.person1 = people[randint(0, len(people)-1)]
 		return self.person1
 		
 	def choosePerson2(self):
+		"""Pick another random person from the list"""
+		# Make sure that the second person is not the same as the
+		# first
 		different_person = False
 		while different_person is False:
 			self.person2 = people[randint(0, len(people)-1)]
 			if self.person2 != self.person1:
+				# People differ
 				different_person = True
 				return self.person2
 				
 
 			
 	def chooseScenario(self):
+		"""Pick a random scenario from the list"""
 		self.scen = scenario[randint(0, len(scenario)-1)]
 		return self.scen
 		
 	def chooseLocation(self):
+		"""Pick a random location from the list"""
 		self.setting = location[randint(0, len(location)-1)]
 		return self.setting
 
 myScenario = ScenarioGen(1,2,3,4)
 			
 def printList(scenarioInt):
+	"""Prints the output of the scenarioGen class"""
 	print "Your scenario features %s and %s. \n" % (myScenario.choosePerson1(), myScenario.choosePerson2())
 	print "The scenario is that a character %s, set %s.\n" % (myScenario.chooseScenario(), myScenario.chooseLocation())
 	print "\n"
@@ -97,11 +105,13 @@ def printList(scenarioInt):
 
 
 def options():
+	"""Prints options, repeated on a loop"""
 	print "Here's your options... \n"
 	print "1) Generate scenario"
 	print "2) Exit."
 
 def mainText():
+	"""Print once, disregard"""
 	print "Welcome to the Scenario generator. Please feel free",
 	print "to change or add to the lists to make this a more",
 	print "complete scenario generator for you. This version was",
@@ -110,14 +120,17 @@ def mainText():
 
 
 def main():
+	"""Main body of program"""
 	mainText()
 	time.sleep(2)
 	options()
 	runLoop = ""
-	while runLoop != "q":
+	while runLoop != "q": # If "q" then user wishes to quit
 		input1 = raw_input("Choose 1 or 2: ")
 		while input1 != 2:
 			
+			# ensure value selected is an integer (1 or 2) and allow
+			# exceptions to avoid crashes
 			try:
 				int(input1) == (1 or 2)
 			except ValueError:
@@ -130,11 +143,13 @@ def main():
 				printList(int(scenarioInt))
 				input2 = raw_input("Y/N: ")
 				if input2.lower() == "no" or input2.lower() == "n":
+					# Quit loop
 					print "OK. Quitting"
 					time.sleep(5)
 					runLoop = "q"
 					break
 				elif input2.lower() == "yes" or input2.lower() == "y":
+					# start integer selection loop again
 					input1 = 1
 				else:
 					print "Sorry, I can only accept 'yes', 'y', 'no'",
@@ -147,13 +162,15 @@ def main():
 				runLoop = "q"
 				break
 			else:
+				# Input is neither 1 nor 2, restart loop with message
 				print "Sorry I don't recognise that input\n"
 				print "Please enter 1 or 2"
 				break
 		else:
-			print "OK... quitting... at the far end..."
+			# Input == 2, user wishes to quit
+			print "OK... quitting..."
 			time.sleep(5)
-			runLoop = "q"
+			runLoop = "q" # break out of loop
 			break
 	return 0
 
