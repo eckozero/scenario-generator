@@ -49,14 +49,14 @@ import time #entirely optional, if you don't like the sleep bits
 scenarioInt = 1
 people = ["your Protaganist", "your Antagonist", "a minor character", "a major character"]
 location = ["outdoors", "indoors", "in a motel", "in a hotel", 
-			"in a church"]
+	    "in a church"]
 scenario = ["finds an old key to an unknown door", 
-				"is staring at their reflection in a mirror",
-				"has woken up hungover in a strange place",
-				"receives a disturbing phone-call",
-				"has just killed someone",
-				"is pacing back and forth, waiting for the phone to ring",
-				"has just evaded the police"]
+	    "is staring at their reflection in a mirror",
+	    "has woken up hungover in a strange place",
+	    "receives a disturbing phone-call",
+	    "has just killed someone",
+	    "is pacing back and forth, waiting for the phone to ring",
+	    "has just evaded the police"]
 
 class ScenarioGen(object):
 	def __init__(self, person1, person2, scenario, location):
